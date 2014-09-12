@@ -1,7 +1,14 @@
 from django.shortcuts import render
 from funtimeplanner.models import FunInterest, FunEvent
-from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Welcome to Fun Time Planner!!!")
+    context = RequestContext(request)
+    interest_list = FunInterest.objects.all()
+    context_dict = {'interests': interest_list}
+
+    return render_to_response('funtimeplanner/index.html', context_dict, context)
+
