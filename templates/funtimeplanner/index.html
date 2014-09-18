@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>FunTimePlanner</title>
+    </head>
+
+    <body>
+    <h1>Welcome to Fun Time Planner!!!</h1>
+        <ul>
+            {% for interest in interests %}
+            <li>{{interest.name}}</li>
+
+            {% endfor %}
+        </ul>
+    </body>
+</html>

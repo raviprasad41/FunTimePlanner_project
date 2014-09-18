@@ -12,3 +12,4 @@ def index(request):
 
     return render_to_response('funtimeplanner/index.html', context_dict, context)
 
+
