@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>FunTimePlanner</title>
+    </head>
+
+    <body>
+    <h1>Welcome to Fun Time Planner!!!</h1>
+        <ul>
+            {% for pair in pairs %}
+            <li>{{pair.user}}</li>
+                {% for event.id, event in pair.matches.items %}
+                    {{event.id}} {{event}}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    <br>
+
+    </body>
+</html>
+
