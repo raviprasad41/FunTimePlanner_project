@@ -4,10 +4,30 @@
        <title>FunTimePlanner</title>
 
         <script>
-            function show(id){
-            var user_id = document.getElementById("results");
-            user_id.innerHTML = id;
+            <!-- Ajax Function -->
+            var date_request = new XMLHttpRequest();
+
+            function drawTime(time) {
+                var user_time = document.getElementById("results");
+                user_time.innerHTML = time;
+                console.log(time);
             }
+
+            function onRequestChange() {
+                console.log(date_request.readyState, date_request.status);
+                if ((date_request.readyState == 4) && (date_request.status == 200)) {
+                    var data = JSON.parse(date_request.responseText);
+                    console.log(data);
+                    drawTime(data["time"]);
+                }
+            }
+
+            function fetchDate(){
+                date_request.onreadystatechange = onRequestChange;
+                date_request.open("GET", "http://date.jsontest.com/", true);
+                date_request.send();
+            }
+
         </script>
 
         <style>
@@ -30,7 +50,7 @@
     <h1>FunTimePlanner Users</h1>
         <ul>
             {% for user in users %}
-            <li><button onclick="show({{user.id}})"> {{user.username}}</button></li>
+            <li><button onclick="fetchDate()"> {{user.username}}</button></li>
             {% endfor %}
         </ul>
     <br>
